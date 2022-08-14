@@ -21,8 +21,9 @@ class SinglyLinkedListTest {
 	void testAdd1() {
 		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
 		
-		boolean expected = true;
-		boolean actual = testList.add("node1");
+		String expected = "SinglyLinkedList[node1]";
+		testList.add("node1");
+		String actual = testList.toString();
 		assertEquals(expected, actual);
 	}
 	
@@ -30,10 +31,13 @@ class SinglyLinkedListTest {
 	void testAdd2() {
 		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
 		
-		boolean expected = true;
+		String expected = "SinglyLinkedList[node1, node2, node3]";
+
 		testList.add("node1");
 		testList.add("node2");
-		boolean actual = testList.add("node3");
+		testList.add("node3");
+		
+		String actual = testList.toString();
 		assertEquals(expected, actual);
 	}
 	
@@ -70,43 +74,6 @@ class SinglyLinkedListTest {
 		testList.add("node2");
 		testList.add("node3");
 		String expected = "node1";
-		String actual = testList.get(0);
-		
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	void testGet3() {
-		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
-		
-		testList.add("node1");
-		testList.add("node2");
-		testList.add("node3");
-		
-		String expected = null;
-		String actual = testList.get(4);
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	void testGet4() {
-		
-		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
-		
-		testList.add("node1");
-		testList.add("node2");
-		testList.add("node3");
-		
-		String expected = null;
-		String actual = testList.get(-1);
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	void testGet5() {
-		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
-		
-		String expected = null;
 		String actual = testList.get(0);
 		
 		assertEquals(expected, actual);
@@ -246,6 +213,7 @@ class SinglyLinkedListTest {
 		assertEquals(expected, actual);
 	}
 	
+	
 	@Test
 	void testRemove1() {
 		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
@@ -253,35 +221,24 @@ class SinglyLinkedListTest {
 		testList.add("node1");
 		testList.add("node2");
 		testList.add("node3");
-		boolean expected = false;
-		boolean actual = testList.remove(4);
-		
+		String expected = "node2";
+		String actual = testList.remove(1);
+
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	void testRemove2() {
-		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
+		SinglyLinkedList<String> testList2 = new SinglyLinkedList<>();
 		
-		testList.add("node1");
-		testList.add("node2");
-		testList.add("node3");
-		boolean expected = true;
-		boolean actual = testList.remove(1);
+		testList2.add("node1");
+		testList2.add("node2");
+		testList2.add("node3");
 		
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	void testRemove3() {
-		SinglyLinkedList<String> testList = new SinglyLinkedList<>();
+		testList2.remove(1);
 		
-		testList.add("node1");
-		testList.add("node2");
-		testList.add("node3");
 		boolean expected = false;
-		testList.remove(1);
-		boolean actual = testList.contains("node2");
+		boolean actual = testList2.contains("node2");
 		
 		assertEquals(expected, actual);
 	}
