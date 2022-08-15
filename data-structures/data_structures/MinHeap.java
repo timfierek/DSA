@@ -1,6 +1,13 @@
 package data_structures;
 import java.util.Arrays;
 
+/**
+ * Basic implementation of a min heap data structure. 
+ * Implemented using an array for data storage.
+ * 
+ * @author Tim Fierek
+ *
+ */
 public class MinHeap {
 
 	private int size;
@@ -43,13 +50,14 @@ public class MinHeap {
 	public int getSize() {
 		return size;}
 	
-	
+	// Helper method for adding or removing nodes
 	public void swap(int index1, int index2) {
 		int temp = data[index1];
 		data[index1] = data[index2];
 		data[index2] = temp;
 	}
 	
+	// Helper method for verifying adequate size for the heap
 	public void verifyCapacity() {
 		if(size == capacity) {
 			data = Arrays.copyOf(data, capacity * 2);
@@ -57,6 +65,7 @@ public class MinHeap {
 		}
 	}
 	
+	// View top (smallest) element without removing
 	public int peek() {
 		if(size == 0) {
 			throw new IllegalStateException("Heap is empty");
@@ -64,6 +73,7 @@ public class MinHeap {
 		return data[0];
 	}
 	
+	// View and return the top (smallest) element
 	public int poll() {
 		if(size == 0) {
 			throw new IllegalStateException("Heap is empty");
@@ -76,6 +86,10 @@ public class MinHeap {
 		return value;
 	}
 	
+	/**
+	 * Restore the min heap property by moving the top element down to its rightful place
+	 * @TimeComplexity O(log n)
+	 */
 	public void heapifyDown() {
 		int index = 0;
 		while(hasLeftChild(index) || hasRightChild(index)) {
@@ -94,7 +108,11 @@ public class MinHeap {
 			index = smallerChildIndex;
 		}
 	}
-	
+	 
+	/**
+	 * Move the bottom most element up to its correct position in the heap
+	 * @TimeComplexity O(d) where d is the depth of the heap
+	 */
 	public void heapifyUp() {
 		int index = size - 1;
 		while(hasParent(index) && (parent(index) > data[index])) {
@@ -103,6 +121,11 @@ public class MinHeap {
 		}
 	}
 	
+	/**
+	 * Adds an item to the heap
+	 * 
+	 * @param element number to be added to the heap
+	 */
 	public void add(int element) {
 		verifyCapacity();
 		data[size] = element;

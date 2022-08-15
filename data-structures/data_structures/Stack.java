@@ -1,7 +1,18 @@
 package data_structures;
 
+/**
+ * Classic stack implementation with basic functionality.
+ * Uses linked list style implementation
+ * 
+ * @author Tim Fierek
+ *
+ * @param <E> type to be stored by stack
+ */
 public class Stack<E> {
 	
+	/**
+	 * Private Node class to store data and reference to next item
+	 */
 	private class Node{
 		private Node next;
 		private E data;
@@ -20,6 +31,12 @@ public class Stack<E> {
 		size = 0;
 	}
 	
+	/**
+	 * Add an item to the top of the stack
+	 * 
+	 * @param data value to be added to the stack
+	 * @TimeComplexity O(1)
+	 */
 	public void push(E data) {
 		if(top == null) {
 			top = new Node(data);
@@ -33,6 +50,11 @@ public class Stack<E> {
 		size++;
 	}
 	
+	/**
+	 * Removes and returns the item on the top of the stack
+	 * @return the item on the top of the stack
+	 * @TimeComplexity O(1)
+	 */
 	public E pop() {
 		if(size == 0) {
 			return null;
@@ -45,6 +67,10 @@ public class Stack<E> {
 		}
 	}
 	
+	/**
+	 * Returns without removing the item on top of the stack
+	 * @return the value of the item on top of the stack
+	 */
 	public E peek() {
 		if(size == 0) {
 			return null;

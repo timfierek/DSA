@@ -1,5 +1,12 @@
 package data_structures;
 
+/**
+ * Basic implementation of a queue using a linked list style approach
+ * 
+ * @author Tim Fierek
+ *
+ * @param <E> data type to be stored in queue
+ */
 public class Queue<E>{
 	
 	private class Node{
@@ -22,6 +29,10 @@ public class Queue<E>{
 		size = 0;
 	}
 	
+	/**
+	 * Add an item to the back of the queue
+	 * @param data value to be enqueued
+	 */
 	public void enqueue(E data) {
 		if(size == 0) {
 			Node newNode = new Node(data);
@@ -36,6 +47,10 @@ public class Queue<E>{
 		size++;
 	}
 	
+	/**
+	 * Remove the first item in the queue
+	 * @return the data value removed from the front of the queue
+	 */
 	public E dequeue() {
 		if(size > 0) {
 			Node oldHead = head;
@@ -49,6 +64,10 @@ public class Queue<E>{
 		
 	}
 	
+	/**
+	 * Retrieves the first item in the queue without removing it
+	 * @return the value of the first item in the queue
+	 */
 	public E peek() {
 		if(size > 0) {
 			return head.data;

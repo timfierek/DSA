@@ -3,9 +3,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Adjacency list implementation of an undirected graph.
+ * 
+ * @author Tim Fierek
+ *
+ */
 public class AdjListGraph {
-
 	
+	/**
+	 * Vertex class stores data and generates hashCode
+	 *
+	 */
 	private class Vertex{
 		private String data;
 		
@@ -35,9 +44,11 @@ public class AdjListGraph {
 		}
 	}
 	
-	private int numVertices;
-	private int numEdges;
-	private HashMap<Vertex, List<Vertex>> adjacentVertices;
+	private int numVertices;									//Number of vertices
+	private int numEdges;										//Number of edges
+	
+	//Stores entire data structure, vertices are the keys and the values are the list of adjacent vertices to that vertex
+	private HashMap<Vertex, List<Vertex>> adjacentVertices;		
 
 	public AdjListGraph() {
 		adjacentVertices = new HashMap<>();
@@ -45,11 +56,25 @@ public class AdjListGraph {
 		numEdges = 0;
 	}
 	
+	/**
+	 * Determines if data is stored in the graph
+	 * 
+	 * @param data data to be stored in the graph 
+	 * @return true if the data is contained in the graph, false othewise
+	 * @TimeComplexity O(1)
+	 */
 	public boolean containsVertex(String data) {
 		Vertex v = new Vertex(data);
 		return(adjacentVertices.containsKey(v));
 	}
 	
+	/**
+	 * Adds the data to the graph and returns true or returns false in which case the data is already in graph
+	 * 
+	 * @param data information to be stored in the vertex
+	 * @return true if vertex is successfully added, false if data is already a vertex in the graph
+	 * @TimeComplexity O(1)
+	 */
 	public boolean addVertex(String data) {
 		Vertex newVertex = new Vertex(data);
 		
@@ -62,6 +87,13 @@ public class AdjListGraph {
 		return false;
 	}
 	
+	/**
+	 * Removes a specified vertex in the graph
+	 * 
+	 * @param data information to be stored in the graph
+	 * @return true if vertex is successfully removed, false if vertex does not exist in graph
+	 * @TimeComplexity O(1)
+	 */
 	public boolean removeVertex(String data) {
 		Vertex vertex = new Vertex(data);
 		
@@ -75,6 +107,13 @@ public class AdjListGraph {
 		return false;
 	}
 	
+	/**
+	 * Adds and edge and the two vertices it connects
+	 * 
+	 * @param data1 value of vertex 1
+	 * @param data2 value of vertex 2
+	 * @TimeComplexity O(1)
+	 */
 	public void addEdge(String data1, String data2) {
 		Vertex v1 = new Vertex(data1);
 		Vertex v2 = new Vertex(data2);
@@ -84,6 +123,13 @@ public class AdjListGraph {
 		}
 	}
 	
+	/**
+	 * Removes the edge between two data points
+	 * 
+	 * @param data1 value of vertex 1
+	 * @param data2 value of vertex 2
+	 * @TimeComplexity O(1)
+	 */
 	public void removeEdge(String data1, String data2) {
 		Vertex v1 = new Vertex(data1);
 	    Vertex v2 = new Vertex(data2);
@@ -96,6 +142,13 @@ public class AdjListGraph {
 	    numEdges--;
 	}
 	
+	/**
+	 * Determines if two vertices share an edge
+	 * 
+	 * @param data1 value of vertex 1
+	 * @param data2 value of vertex 2
+	 * @return true if data1 and data2 share an edge, false otherwise
+	 */
 	public boolean areConnected(String data1, String data2) {
 		Vertex v1 = new Vertex(data1);
 		Vertex v2 = new Vertex(data2);
@@ -103,6 +156,12 @@ public class AdjListGraph {
 		return(adjacentVertices.get(v1).contains(v2));
 	}
 	
+	/**
+	 * Returns adjacent vertices to the input vertex
+	 * 
+	 * @param data vertex to search for
+	 * @return a list of connected vertices
+	 */
 	public List<Vertex> getAdjVertices(String data){
 		Vertex v = new Vertex(data);
 		return adjacentVertices.get(v);
